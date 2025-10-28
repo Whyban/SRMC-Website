@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    command: gunicorn smrcwebpage.wsgi:application --bind 0.0.0.0:8000 --workers 3
+    volumes:
+      - static_volume:/app/staticfiles
+    ports:
+      - "8000:8000"
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+    env_file:
+      - .env
+
+# For production, you should use a real DB (e.g. postgres) instead of sqlite.
+# Example (uncomment and configure for use):
+#  db:
+#    image: postgres:16
+#    restart: always
+#    env_file:
+#      - .db.env
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data/
+
+volumes:
+  static_volume:
+    name: smrcwebpage_static_volume
+#  postgres_data:
+#    name: smrcwebpage_postgres_data
