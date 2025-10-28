@@ -1,0 +1,192 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    	<!-- Basic -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<title>{% block title %}SRMC - Dashboard{% endblock %}</title>
+		<meta name="keywords" content="WebSite Template" />
+		<meta name="description" content="Porto - Multipurpose Website Template">
+		<meta name="author" content="okler.net">
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="{% static 'img/srmc-favicon1.ico' %}" type="image/x-icon" />
+		<link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+		<!-- Web Fonts  -->
+		<link id="googleFonts" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800%7CShadows+Into+Light&display=swap" rel="stylesheet" type="text/css">
+		<!-- Vendor CSS -->
+		<link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/animate/animate.compat.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/simple-line-icons/css/simple-line-icons.min.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/owl.carousel/assets/owl.carousel.min.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/owl.carousel/assets/owl.theme.default.min.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/magnific-popup/magnific-popup.min.css' %}">
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="{% static 'css/theme.css' %}">
+		<link rel="stylesheet" href="{% static 'css/theme-elements.css' %}">
+		<link rel="stylesheet" href="{% static 'css/theme-blog.css' %}">
+		<link rel="stylesheet" href="{% static 'css/theme-shop.css' %}">
+		<!-- Current Page CSS -->
+		<link rel="stylesheet" href="{% static 'vendor/circle-flip-slideshow/css/component.css' %}">
+
+		<!-- Skin CSS -->
+		<link id="skinCSS" rel="stylesheet" href="{% static 'css/skins/default.css' %}">
+		<!-- Theme Custom CSS -->
+		<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    {% block extra_css %}
+    {% endblock %}
+  </head>
+	<body data-plugin-page-transition>
+    <div class="body">
+			<header id="header" class="header-transparent header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 70}">
+				<div class="header-body border-top-0 bg-dark box-shadow-none">
+					<div class="header-container container">
+						<div class="header-row">
+							<div class="header-column">
+								<div class="header-row">
+									<div class="header-logo">
+										<a href="{% url 'dashboard' %}">
+											<img alt="Porto" width="82" height="40" src="{% static 'img/srmc-logo-small.png' %}">
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="header-column justify-content-end">
+								<div class="header-row">
+									<div class="header-nav header-nav-links header-nav-dropdowns-dark header-nav-light-text order-2 order-lg-1">
+										<div class="header-nav-main header-nav-main-mobile-dark header-nav-main-square header-nav-main-dropdown-no-borders header-nav-main-effect-2 header-nav-main-sub-effect-1">
+											<nav class="collapse">
+												<ul class="nav nav-pills" id="mainNav">
+													<!-- HOME: direct link to dashboard, no dropdown -->
+													<li>
+													<!-- If you use Django routes, you can change href to: href="{% url 'dashboard' %}" -->
+													<a class="dropdown-item active" href="{% url 'dashboard' %}">Home</a>
+													</li>
+
+													<!-- SERVICES (renamed from Elements) -->
+													<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle" href="#">
+														Services
+													</a>
+													<ul class="dropdown-menu">
+														<li><a class="dropdown-item" href="{% url 'debt_recovery' %}">Debt Recovery & Key Strategies</a></li>
+														<li><a class="dropdown-item" href="{% url 'our_system' %}">Our System & Collection Process</a></li>
+														<li><a class="dropdown-item" href="{% url 'service_offer' %}">Service Offered & Efficient Tools</a></li>
+													</ul>
+													</li>
+
+													<!-- INFORMATION (renamed from Features) -->
+													<li class="dropdown">
+													<a class="dropdown-item dropdown-toggle" href="#">
+														Information
+													</a>
+													<ul class="dropdown-menu">
+														<li><a class="dropdown-item" href="{% url 'aboutus' %}">About Us</a></li>
+														<li><a class="dropdown-item" href="{% url 'contactus' %}">Contact Us</a></li>
+														<li><a class="dropdown-item" href="{% url 'faq' %}">F.A.Q</a></li>
+													</ul>
+													</li>
+												</ul>
+											</nav>
+										</div>
+										<button class="btn header-btn-collapse-nav" data-bs-toggle="collapse" data-bs-target=".header-nav-main nav">
+											<i class="fas fa-bars"></i>
+										</button>
+									</div>
+
+									<!-- RIGHT SIDE ICONS (unchanged) -->
+									<div class="header-nav-features header-nav-features-light header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2">
+										<div class="header-nav-feature header-nav-features-search d-inline-flex">
+											<a href="#" class="header-nav-features-toggle text-decoration-none" data-focus="headerSearch" aria-label="Search">
+											<i class="fas fa-search header-nav-top-icon"></i>
+											</a>
+											<div class="header-nav-features-dropdown header-nav-features-dropdown-mobile-fixed" id="headerTopSearchDropdown">
+												<form role="search" action="page-search-results.html" method="get">
+													<div class="simple-search input-group">
+													<input class="form-control text-1" id="headerSearch" name="q" type="search" value="" placeholder="Search...">
+													<button class="btn" type="submit" aria-label="Search">
+														<i class="fas fa-search header-nav-top-icon"></i>
+													</button>
+													</div>
+												</form>
+											</div>
+										</div>
+
+									</div>
+									<!-- /RIGHT SIDE ICONS -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+          {% block content %}
+          {% endblock %} 
+			<footer id="footer" class="mt-0">
+				<div class="container">
+					<div class="footer-ribbon">
+						<span>Get in Touch</span>
+					</div>
+					<div class="row py-5 my-4">
+						<div class="col-md-6 mb-4 mb-lg-0">
+							<a href="{% url 'dashboard' %}" class="logo pe-0 pe-lg-3">
+								<img alt="Porto Website Template" src="{% static 'img/footer-logo.png' %}" class="opacity-7 bottom-4" height="32">
+							</a>
+							<p class="mt-2 mb-2">SRMC Debt Collectors deliver reliable and professional collection solutions that help financial institutions recover with confidence.</p>
+							<p class="mb-0"><a href="{% url 'aboutus' %}" class="btn-flat btn-xs text-color-light"><strong class="text-2">VIEW MORE</strong><i class="fas fa-angle-right p-relative top-1 ps-2"></i></a></p>
+						</div>
+						<div class="col-md-6">
+							<h5 class="text-3 mb-3">CONTACT US</h5>
+							<div class="row">
+								<div class="col-md-6">
+									<ul class="list list-icons list-icons-lg">
+										<li class="mb-1"><i class="far fa-dot-circle text-color-primary"></i><p class="m-0">Ilang - Ilang St. Metrocor Homes Almar Subd. Camarin Caloocan City</p></li>
+										<li class="mb-1"><i class="fab fa-whatsapp text-color-primary"></i><p class="m-0"><a href="tel:8001234567">09999828228</a></p></li>
+										<li class="mb-1"><i class="far fa-envelope text-color-primary"></i><p class="m-0"><a href="mailto:mail@example.com">admin0108@gmail.com</a></p></li>
+									</ul>
+								</div>
+								<div class="col-md-6">
+									<ul class="list list-icons list-icons-sm">
+										<li><i class="fas fa-angle-right"></i><a href="{% url 'aboutus' %}" class="link-hover-style-1 ms-1"> About Us</a></li>
+										<li><i class="fas fa-angle-right"></i><a href="{% url 'faq' %}" class="link-hover-style-1 ms-1"> FAQ's</a></li>
+										<li><i class="fas fa-angle-right"></i><a href="{% url 'contactus' %}" class="link-hover-style-1 ms-1"> Contact Us</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer-copyright footer-copyright-style-2">
+					<div class="container py-2">
+						<div class="row py-4">
+							<div class="col d-flex align-items-center justify-content-center">
+								<p>© Copyright 2025. All Rights Reserved.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		<!-- Vendor -->
+		<script src="{% static 'vendor/plugins/js/plugins.min.js' %}"></script>
+		<!-- Theme Base, Components and Settings -->
+		<script src="{% static 'js/theme.js' %}"></script>
+
+		<!-- Circle Flip Slideshow Script -->
+		<script src="{% static 'vendor/circle-flip-slideshow/js/jquery.flipshow.min.js' %}"></script>
+		<!-- Current Page Views -->
+		<script src="{% static 'js/views/view.home.js' %}"></script>
+
+		<!-- Theme Custom -->
+		<script src="{% static 'js/custom.js' %}"></script>
+		<!-- Theme Initialization Files -->
+		<script src="{% static 'js/theme.init.js' %}"></script>
+    {% block extra_js %}
+    {% endblock %}
+  </body>
+</html>
