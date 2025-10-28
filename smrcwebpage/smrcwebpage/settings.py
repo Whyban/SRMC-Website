@@ -12,7 +12,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Load environment variables from .env (only really used in local/dev or docker)
+# Load .env values for local/dev or docker
 load_dotenv()
 
 # -------------------------------------------------------------------
@@ -27,39 +27,35 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # -------------------------------------------------------------------
 
 # SECRET_KEY:
-# In production this MUST be provided via env (e.g. GitHub Actions env secret,
-# container env, etc.). Never commit a real key here.
+# In prod this comes from env (GitHub env secret / container env).
 SECRET_KEY = os.environ.get(
     "SECRET_KEY",
-    "CHANGE_ME_IN_PRODUCTION"  # fallback so local dev doesn't crash
+    "CHANGE_ME_IN_PRODUCTION"  # fallback so local doesn't crash
 )
 
 # DEBUG:
-# Do NOT leave this True in prod. Control it via env.
-# e.g. DEBUG=False in your prod environment.
+# Controlled by env. DEBUG must be False in prod.
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 # ALLOWED_HOSTS:
-# Comma-separated in env, example:
-# ALLOWED_HOSTS="srmc.com.ph,localhost,127.0.0.1,10.10.90.6"
+# Comma-separated in env. Default covers your prod + dev.
 ALLOWED_HOSTS = os.environ.get(
     "ALLOWED_HOSTS",
     "srmc.com.ph,localhost,127.0.0.1,10.10.90.6"
 ).split(",")
 
 # CSRF trusted origins:
-# These must include scheme (http/https) and port if not default.
+# Must include scheme (http/https) and port for non-80/443.
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
-    # prod / internal
     "https://srmc.com.ph",
     "http://10.10.90.6",
     "https://10.10.90.6",
 ]
 
-# If you're behind a reverse proxy/ingress that terminates TLS (nginx, etc.),
-# you may also eventually need:
+# If you're behind a reverse proxy that terminates TLS (nginx/ingress),
+# you'll likely also need in production:
 # SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 # SECURE_SSL_REDIRECT = not DEBUG
 
@@ -81,14 +77,12 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
 
-    # WhiteNoise should stay right after SecurityMiddleware so it can serve
-    # collected static files in production.
+    # WhiteNoise must be right after SecurityMiddleware
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
 
-    # CSRF middleware must run for forms / POST protection
     'django.middleware.csrf.CsrfViewMiddleware',
 
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -102,8 +96,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
 
-        # If you have a custom templates/ dir at project root, add it here:
-        # BASE_DIR / "templates"
+        # If you add a global templates/ dir, put BASE_DIR / "templates" here
         'DIRS': [],
 
         'APP_DIRS': True,
@@ -123,19 +116,40 @@ WSGI_APPLICATION = 'smrcwebpage.wsgi.application'
 # -------------------------------------------------------------------
 # Database
 # -------------------------------------------------------------------
-# For prod you'll probably switch to Postgres, pulled from env.
-# SQLite is fine for local/dev.
+# Local dev default: sqlite
+# CI/prod: override with env to use Postgres
+
+DEFAULT_SQLITE_PATH = BASE_DIR / 'db.sqlite3'
+
+DB_ENGINE = os.environ.get('DB_ENGINE', 'django.db.backends.sqlite3')
+DB_NAME = os.environ.get('DB_NAME', DEFAULT_SQLITE_PATH)
+DB_USER = os.environ.get('DB_USER', '')
+DB_PASSWORD = os.environ.get('DB_PASSWORD', '')
+DB_HOST = os.environ.get('DB_HOST', '')
+DB_PORT = os.environ.get('DB_PORT', '')
 
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get('DB_ENGINE', 'django.db.backends.sqlite3'),
-        'NAME': os.environ.get('DB_NAME', BASE_DIR / 'db.sqlite3'),
-        'USER': os.environ.get('DB_USER', ''),
-        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
-        'HOST': os.environ.get('DB_HOST', ''),
-        'PORT': os.environ.get('DB_PORT', ''),
+        'ENGINE': DB_ENGINE,
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PASSWORD,
+        'HOST': DB_HOST,
+        'PORT': DB_PORT,
     }
 }
+
+# NOTE:
+# For CI we export:
+#   DB_ENGINE=django.db.backends.postgresql
+#   DB_NAME=test_db
+#   DB_USER=postgres
+#   DB_PASSWORD=postgres
+#   DB_HOST=localhost
+#   DB_PORT=5432
+#
+# In prod you'll point these to your real Postgres.
+# Make sure `psycopg2-binary` is in requirements.txt so Django can talk to Postgres.
 
 
 # -------------------------------------------------------------------
@@ -164,12 +178,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-# Match your deployment timezone (Philippines).
+# Match deploy region (Philippines)
 TIME_ZONE = 'Asia/Manila'
 
 USE_I18N = True
 
-# Keep True so Django stores datetimes as aware UTC internally.
+# Keep True so Django stores tz-aware datetimes (UTC in DB)
 USE_TZ = True
 
 
@@ -177,21 +191,21 @@ USE_TZ = True
 # Static files
 # -------------------------------------------------------------------
 
-# URL browsers will use
+# URL for static files
 STATIC_URL = "/static/"
 
-# Where your source static assets live during dev (CSS/JS/img under ./assets)
+# During dev: where your app-level static assets live
 STATICFILES_DIRS = [BASE_DIR / "assets"]
 
-# Where `collectstatic` will dump for prod serving (e.g. by WhiteNoise / nginx)
+# During collectstatic: final location for production serving
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# Optional: help WhiteNoise set long cache headers on hashed files
+# Tell WhiteNoise to serve compressed, hashed files in prod
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 # -------------------------------------------------------------------
-# Primary key field
+# Default primary key type
 # -------------------------------------------------------------------
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -205,12 +219,14 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com')
 EMAIL_PORT = int(os.environ.get('EMAIL_PORT', '587'))
-EMAIL_USE_TLS = True  # Gmail STARTTLS on 587
+EMAIL_USE_TLS = True  # STARTTLS on port 587 (Gmail style)
 
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'admin0108@gmail.com')
 
-# IMPORTANT:
-# Never hardcode this. Use an App Password (Gmail) or SMTP password from env.
+# Never commit the real password. Use env / GitHub environment secret.
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 
-DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER or 'webmaster@localhost')
+DEFAULT_FROM_EMAIL = os.environ.get(
+    'DEFAULT_FROM_EMAIL',
+    EMAIL_HOST_USER or 'webmaster@localhost'
+)
