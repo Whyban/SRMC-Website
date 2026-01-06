@@ -16,7 +16,7 @@ COPY --from=builder /root/.local /root/.local
 ENV PATH=/root/.local/bin:$PATH
 
 COPY . .
-
+COPY ./assets ./static/img
 RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
