@@ -1,8 +1,8 @@
 {% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    	<!-- Basic -->
+	<head>
+		<!-- Basic -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
   		<title>{% block title %}SRMC - Dashboard{% endblock %}</title>
@@ -36,21 +36,20 @@
 		<link id="skinCSS" rel="stylesheet" href="{% static 'css/skins/default.css' %}">
 		<!-- Theme Custom CSS -->
 		<link rel="stylesheet" href="{% static 'css/custom.css' %}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    {% block extra_css %}
-    {% endblock %}
-  </head>
+    	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+	</head>
 	<body data-plugin-page-transition>
-    <div class="body">
-			<header id="header" class="header-transparent header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 70}">
-				<div class="header-body border-top-0 bg-dark box-shadow-none">
+		<div class="body">
+			<header id="header" class="header-transparent header-transparent-dark-bottom-border header-transparent-dark-bottom-border-1 header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 70}">
+				<div class="header-body border-top-0 bg-dark box-shadow-none overflow-visible">
 					<div class="header-container container">
 						<div class="header-row">
 							<div class="header-column">
 								<div class="header-row">
 									<div class="header-logo">
 										<a href="{% url 'dashboard' %}">
-											<img alt="Porto" width="82" height="40" src="{% static 'img/srmc-logo-small.png' %}">
+											<img alt="Porto" width="120" height="62" src="{% static 'img/srmc-logo-small.png' %}">
 										</a>
 									</div>
 								</div>
@@ -61,34 +60,30 @@
 										<div class="header-nav-main header-nav-main-mobile-dark header-nav-main-square header-nav-main-dropdown-no-borders header-nav-main-effect-2 header-nav-main-sub-effect-1">
 											<nav class="collapse">
 												<ul class="nav nav-pills" id="mainNav">
-													<!-- HOME: direct link to dashboard, no dropdown -->
-													<li>
-													<!-- If you use Django routes, you can change href to: href="{% url 'dashboard' %}" -->
-													<a class="dropdown-item active" href="{% url 'dashboard' %}">Home</a>
-													</li>
-
-													<!-- SERVICES (renamed from Elements) -->
 													<li class="dropdown">
-													<a class="dropdown-item dropdown-toggle" href="#">
-														Services
-													</a>
-													<ul class="dropdown-menu">
-														<li><a class="dropdown-item" href="{% url 'debt_recovery' %}">Debt Recovery & Key Strategies</a></li>
-														<li><a class="dropdown-item" href="{% url 'our_system' %}">Our System & Collection Process</a></li>
-														<li><a class="dropdown-item" href="{% url 'service_offer' %}">Service Offered & Efficient Tools</a></li>
-													</ul>
+														<a class="dropdown-item dropdown-toggle active" href="index.html">
+															Home
+														</a>
 													</li>
-
-													<!-- INFORMATION (renamed from Features) -->
+													<li class="dropdown dropdown-mega">
+														<a class="dropdown-item dropdown-toggle" href="elements.html">
+															Who are we
+														</a>
+													</li>
 													<li class="dropdown">
-													<a class="dropdown-item dropdown-toggle" href="#">
-														Information
-													</a>
-													<ul class="dropdown-menu">
-														<li><a class="dropdown-item" href="{% url 'aboutus' %}">About Us</a></li>
-														<li><a class="dropdown-item" href="{% url 'contactus' %}">Contact Us</a></li>
-														<li><a class="dropdown-item" href="{% url 'faq' %}">F.A.Q</a></li>
-													</ul>
+														<a class="dropdown-item dropdown-toggle" href="#">
+															Services
+														</a>
+													</li>
+													<li class="dropdown">
+														<a class="dropdown-item dropdown-toggle" href="#">
+															Our Partners
+														</a>
+													</li>
+													<li class="dropdown">
+														<a class="dropdown-item dropdown-toggle" href="#">
+															Contact
+														</a>
 													</li>
 												</ul>
 											</nav>
@@ -97,27 +92,21 @@
 											<i class="fas fa-bars"></i>
 										</button>
 									</div>
-
-									<!-- RIGHT SIDE ICONS (unchanged) -->
 									<div class="header-nav-features header-nav-features-light header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2">
 										<div class="header-nav-feature header-nav-features-search d-inline-flex">
-											<a href="#" class="header-nav-features-toggle text-decoration-none" data-focus="headerSearch" aria-label="Search">
-											<i class="fas fa-search header-nav-top-icon"></i>
-											</a>
+											<a href="#" class="header-nav-features-toggle text-decoration-none" data-focus="headerSearch" aria-label="Search"><i class="fas fa-search header-nav-top-icon"></i></a>
 											<div class="header-nav-features-dropdown header-nav-features-dropdown-mobile-fixed" id="headerTopSearchDropdown">
 												<form role="search" action="page-search-results.html" method="get">
 													<div class="simple-search input-group">
-													<input class="form-control text-1" id="headerSearch" name="q" type="search" value="" placeholder="Search...">
-													<button class="btn" type="submit" aria-label="Search">
-														<i class="fas fa-search header-nav-top-icon"></i>
-													</button>
+														<input class="form-control text-1" id="headerSearch" name="q" type="search" value="" placeholder="Search...">
+														<button class="btn" type="submit" aria-label="Search">
+															<i class="fas fa-search header-nav-top-icon"></i>
+														</button>
 													</div>
 												</form>
 											</div>
 										</div>
-
 									</div>
-									<!-- /RIGHT SIDE ICONS -->
 								</div>
 							</div>
 						</div>
@@ -126,50 +115,57 @@
 			</header>
           {% block content %}
           {% endblock %} 
-			<footer id="footer" class="mt-0">
-				<div class="container">
-					<div class="footer-ribbon">
-						<span>Get in Touch</span>
-					</div>
-					<div class="row py-5 my-4">
-						<div class="col-md-6 mb-4 mb-lg-0">
-							<a href="{% url 'dashboard' %}" class="logo pe-0 pe-lg-3">
-								<img alt="Porto Website Template" src="{% static 'img/footer-logo.png' %}" class="opacity-7 bottom-4" height="32">
-							</a>
-							<p class="mt-2 mb-2">SRMC Debt Collectors deliver reliable and professional collection solutions that help financial institutions recover with confidence.</p>
-							<p class="mb-0"><a href="{% url 'aboutus' %}" class="btn-flat btn-xs text-color-light"><strong class="text-2">VIEW MORE</strong><i class="fas fa-angle-right p-relative top-1 ps-2"></i></a></p>
+			<footer id="footer" class="border-0" style="background: url('{% static 'img/parallax/footer.png' %}'); background-size:cover; background-position: 0 100%;">
+				<div class="container py-4">
+					<div class="row justify-content-md-center py-5 mt-3">
+						<div class="col-md-12 col-lg-3 d-flex align-items-center justify-content-center justify-content-lg-start mb-5 mb-lg-0">
+							<a href="index.html"><img src="{% static 'img/srmc-footer-logo.png' %}" alt="Logo" class="img-fluid" style="max-width: 200px;"></a>
 						</div>
-						<div class="col-md-6">
-							<h5 class="text-3 mb-3">CONTACT US</h5>
-							<div class="row">
-								<div class="col-md-6">
-									<ul class="list list-icons list-icons-lg">
-										<li class="mb-1"><i class="far fa-dot-circle text-color-primary"></i><p class="m-0">Ilang - Ilang St. Metrocor Homes Almar Subd. Camarin Caloocan City</p></li>
-										<li class="mb-1"><i class="fab fa-whatsapp text-color-primary"></i><p class="m-0"><a href="tel:8001234567">09999828228</a></p></li>
-										<li class="mb-1"><i class="far fa-envelope text-color-primary"></i><p class="m-0"><a href="mailto:mail@example.com">admin0108@gmail.com</a></p></li>
-									</ul>
-								</div>
-								<div class="col-md-6">
-									<ul class="list list-icons list-icons-sm">
-										<li><i class="fas fa-angle-right"></i><a href="{% url 'aboutus' %}" class="link-hover-style-1 ms-1"> About Us</a></li>
-										<li><i class="fas fa-angle-right"></i><a href="{% url 'faq' %}" class="link-hover-style-1 ms-1"> FAQ's</a></li>
-										<li><i class="fas fa-angle-right"></i><a href="{% url 'contactus' %}" class="link-hover-style-1 ms-1"> Contact Us</a></li>
-									</ul>
-								</div>
+						<div class="col-md-6 col-lg-2 text-center text-lg-start mb-5 mb-lg-0">
+							<h5 class="text-5 text-transform-none font-weight-semibold text-color-light mb-4">Pages</h5>
+							<ul class="list list-unstyled">
+								<li class="mb-1"><a href="page-services.html" class="link-hover-style-1"> Our Services</a></li>
+								<li class="mb-1"><a href="about-us.html" class="link-hover-style-1"> About Us</a></li>
+								<li class="mb-1"><a href="contact-us.html" class="link-hover-style-1"> Contact Us</a></li>
+							</ul>
+						</div>
+						<div class="col-md-6 col-lg-2 text-center text-lg-start mb-5 mb-lg-0">
+							<h5 class="text-5 text-transform-none font-weight-semibold text-color-light mb-4">Links</h5>
+							<ul class="list list-unstyled">
+								<li class="mb-1"><a href="page-faq.html" class="link-hover-style-1"> FAQ's</a></li>
+								<li class="mb-1"><a href="sitemap.html" class="link-hover-style-1"> Sitemap</a></li>
+							</ul>
+						</div>
+						<div class="col-md-6 col-lg-5 text-center text-lg-start">
+							<h5 class="text-5 text-transform-none font-weight-semibold text-color-light mb-4">Newsletter</h5>
+							<div class="alert alert-success d-none" id="newsletterSuccess">
+								<strong>Success!</strong> You've been added to our email list.
 							</div>
+							<div class="alert alert-danger d-none" id="newsletterError"></div>
+							<form id="newsletterForm" action="php/newsletter-subscribe.php" method="POST" class="mb-3 mb-md-0">
+								<div class="input-group input-group-rounded">
+									<input class="form-control form-control-sm bg-light" placeholder="Email Address" name="newsletterEmail" id="newsletterEmail" type="email">
+									<button class="btn btn-light text-color-dark" type="submit"><strong>GO!</strong></button>
+								</div>
+							</form>
+                            <p class="mt-3 mb-0 text-center text-lg-start">
+                                <i class="fab fa-whatsapp text-color-primary"></i><span class="text-color-light opacity-7 ps-2">0999-982-8228</span>
+                                <i class="far fa-envelope text-color-primary ms-4"></i><a href="mailto:mail@example.com" class="opacity-7 ps-2 text-color-light">admin@srmccreditcollectionservices.net</a>
+                            </p>
 						</div>
 					</div>
 				</div>
-				<div class="footer-copyright footer-copyright-style-2">
+				<div class="footer-copyright footer-copyright-style-2 bg-transparent footer-top-light-border">
 					<div class="container py-2">
 						<div class="row py-4">
-							<div class="col d-flex align-items-center justify-content-center">
+							<div class="col d-flex align-items-center justify-content-center mb-4 mb-lg-0">
 								<p>© Copyright 2025. All Rights Reserved.</p>
 							</div>
 						</div>
 					</div>
 				</div>
 			</footer>
+
 		</div>
 
 		<!-- Vendor -->
@@ -186,7 +182,9 @@
 		<script src="{% static 'js/custom.js' %}"></script>
 		<!-- Theme Initialization Files -->
 		<script src="{% static 'js/theme.init.js' %}"></script>
-    {% block extra_js %}
-    {% endblock %}
-  </body>
+
+	    {% block extra_js %}
+    	{% endblock %}
+
+	</body>
 </html>
