@@ -87,7 +87,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t serjanxiety/srmc-website:latest -f smrcwebpage/Dockerfile smrcwebpage
+          docker build -t serjanxiety/srmc-website:latest ./smrcwebpage
 
       - name: Push Docker image to DockerHub
         run: |
