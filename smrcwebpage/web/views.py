@@ -36,16 +36,10 @@ def contactus_view(request):
             context['error'] = 'Please fill in all fields.'
     return render(request, 'contactus.html', context)
 
-def faq_view(request):
-    return render(request, "faq.html")
+def careers_view(request):
+    return render(request, "careers.html")
 
-def debt_recovery_view(request):
-    return render(request, "debt_recovery.html")
-
-def our_system_view(request):
-    return render(request, "our_system.html")
-
-def service_offer_view(request):
-    return render(request, "service_offer.html")
+def our_partners_view(request):
+    return render(request, "our_partners.html")
 
     

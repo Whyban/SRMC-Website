@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}SMRC - Careers{% endblock %}
+{% block content %}
+
+<div role="main" class="main">
+   <section class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-7" style="background-image: url('{% static 'img/page-header/srmc-header.png' %}');">
+      <br>
+      <br>
+      <div class="container">
+         <div class="row mt-5">
+            <div class="col-md-12 align-self-center p-static order-2 text-center">
+               <h1 class="text-9 font-weight-bold">Careers</h1>
+            </div>
+            <div class="col-md-12 align-self-center order-1">
+               <ul class="breadcrumb breadcrumb-light d-block text-center">
+                  <li>
+                     <a href="{% url 'dashboard' %}">Home</a>
+                  </li>
+                  <li class="active">Careers</li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </section>
+   <div class="container pb-1">
+      <div class="row pt-4">
+         <div class="col">
+            <div class="overflow-hidden mb-3">
+               <h2 class="word-rotator slide font-weight-bold text-8 mb-0 appear-animation" data-appear-animation="maskUp">
+                  <span>Careers at </span>
+                  <span class="word-rotator-words bg-primary">
+                     <b class="is-visible">SRMC</b>
+                  </span>
+                  <span>Where Passion Meets Purpose</span>
+               </h2>
+            </div>
+         </div>
+      </div>
+      <div class="row mb-2">
+         <div class="col-lg-10">
+            <div class="overflow-hidden">
+               <p class="lead mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="250"> Find your place in an environment that prioritizes <strong>innovation, </strong>
+                  <strong>collaboration, </strong>and <strong>professional development. </strong> At SRMC, we go beyond providing mere employment, we cultivate meaningful careers that deliver a taangible impact. <br>
+                  <br> Be part of a dedicated team of experts commited to transforming the landscape of our industry.
+               </p>
+            </div>
+         </div>
+      </div>
+   </div>
+   <section class="section custom-section-full-width bg-color-transparent border-0 mt-0 mb-1" style="background-image: url('{% static 'img/demos/it-services/backgrounds/dots-background-4.png' %}'); background-repeat: no-repeat; background-position: top right;">
+      <div class="container container-xl-custom pt-3 mt-4">
+         <div class="row justify-content-center">
+            <div class="col-lg-10">
+               <div class="overflow-hidden mb-2">
+                  <span class="d-block font-weight-bold custom-text-color-grey-1 text-center line-height-1 mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="300"> BE PART OF OUR TEAM </span>
+               </div>
+               <div class="overflow-hidden mb-4">
+                  <h2 class="text-color-dark font-weight-bold text-center text-8 line-height-2 mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="500"> Join Us In Your Greatest Professional Mission </h2>
+               </div>
+               <p class="custom-text-size-1 text-center mb-5 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="700"> Join our growing customer support team and build a rewarding career in communication, customer engagement, and professional service excellence. </p>
+            </div>
+         </div>
+         <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-9 col-xl-8">
+               <div class="accordion accordion-modern without-bg appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="900" id="accordion11">
+                  <div class="card card-default">
+                     <div class="card-header">
+                        <h4 class="card-title m-0">
+                           <a class="accordion-toggle px-4 pt-3" data-bs-toggle="collapse" data-bs-parent="#accordion11" href="#collapse11One"> CALL CENTER AGENT - COLLECTION SERVICES </a>
+                        </h4>
+                     </div>
+                     <div id="collapse11One" class="collapse show">
+                        <div class="card-body px-4 pt-2 pb-5">
+                           <p class="custom-text-size-1 pb-1 mb-4"> We are looking for dedicated and professional Call Center Agents to provide excellent customer assistance and support services. Candidates should possess strong communication skills, patience, and the ability to handle customer concerns effectively. </p>
+                           <p class="custom-text-size-1"> Applicants must be customer-oriented, goal-driven, and capable of working in a fast-paced environment while maintaining high-quality service standards. </p>
+                           <ul class="list list-inline list-unstyled">
+                              <li class="list-inline-item">
+                                 <strong class="text-color-dark">LOCATION:</strong> PHILIPPINES
+                              </li>
+                              <li class="list-inline-item">
+                                 <strong class="text-color-dark">QUALIFICATION:</strong> GOOD COMMUNICATION SKILLS, CUSTOMER SERVICE EXPERIENCE IS A PLUS
+                              </li>
+                           </ul>
+                           <a href="#" class="btn btn-secondary btn-outline text-color-dark font-weight-semibold border-width-4 custom-link-effect-1 text-1 text-xl-3 d-inline-flex align-items-center px-4 py-3"> APPLY NOW <i class="custom-arrow-icon ms-2"></i>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+</div>
+
+{% endblock %}
